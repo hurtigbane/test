@@ -282,3 +282,4 @@
 "2025-08-22T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (1)" 
 "2025-08-22T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (2)" 
 "2025-08-22T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (3)" 
+"2025-08-26T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (0)" 
