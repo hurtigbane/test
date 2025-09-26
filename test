@@ -1,1 +1,82 @@
+# uwuify.ps1
+# PowerShell version of uwuify.py
 
+# Arrays of faces, expressions, and actions
+$faces = @(
+    " (・`ω´・) ", " ;;w;; ", " OwO ", " UwU ",
+    " >w< ", " ^w^ ", " ÚwÚ ", " ^-^ ", " :3 ", " x3 "
+)
+
+$expressions = @(
+    " nyaa~~ ", " mya ", " rawr ", " rawr x3 ",
+    " rawr XD ", " XD ", " meow ", " meow~ "
+)
+
+$actions = @(
+    " *blushes* ", " *whispers to self* ", " *cries* ", " *screams* ",
+    " *sweats* ", " *twerks* ", " *runs away* ", " *screeches* ",
+    " *walks away* ", " *sees bulge* ", " *looks at you* ",
+    " *notices buldge* ", " *starts twerking* ", " *huggles tightly* ",
+    " *boops your nose* "
+)
+
+# Function to add stutter
+function Add-Stutter {
+    param(
+        [string]$Word,
+        [int]$MaxStutter = 2
+    )
+    $stutterLength = Get-Random -Minimum 1 -Maximum ($MaxStutter + 1)
+    $stutter = ""
+    for ($i = 1; $i -le $stutterLength; $i++) {
+        $stutter += $Word[0] + "-"
+    }
+    return $stutter + $Word
+}
+
+# Function to uwuify text
+function Uwuify {
+    param(
+        [string]$Message,
+        [bool]$Stutter = $true,
+        [int]$StutterMax = 2,
+        [bool]$UseFaces = $true,
+        [bool]$UseExpressions = $true,
+        [bool]$UseActions = $true
+    )
+
+    $words = $Message -split '\s+'
+    $uwuText = @()
+    $probability = 0.075  # ~7.5% chance
+
+    foreach ($word in $words) {
+        $replaced = $word -replace '[rR]', 'w' -replace '[lL]', 'w'
+
+        $rand = Get-Random
+        if ($rand -le $probability -and $Stutter) {
+            $uwuText += Add-Stutter -Word $replaced -MaxStutter $StutterMax
+        } elseif ($rand -le $probability -and $UseFaces) {
+            $uwuText += $replaced + ($faces | Get-Random)
+        } elseif ($rand -le $probability -and $UseExpressions) {
+            $uwuText += $replaced + ($expressions | Get-Random)
+        } elseif ($rand -le $probability -and $UseActions) {
+            $uwuText += $replaced + ($actions | Get-Random)
+        } else {
+            $uwuText += $replaced
+        }
+    }
+
+    return ($uwuText -join " ")
+}
+
+# Main interactive loop
+Write-Host "Translator ready! Type something (Ctrl+C to quit):"
+try {
+    while ($true) {
+        $text = Read-Host "> "
+        $uwuText = Uwuify -Message $text -Stutter $true -StutterMax 3 -UseFaces $true -UseExpressions $true -UseActions $true
+        Write-Host $uwuText
+    }
+} catch [System.Management.Automation.PipelineStoppedException] {
+    Write-Host "`nBye bye >w<"
+}
