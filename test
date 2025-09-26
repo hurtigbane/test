@@ -1,4 +1,5 @@
 cls
+
 # Arrays of faces, expressions, and actions
 $faces = @(
     " (・`ω´・) ", " ;;w;; ", " OwO ", " UwU ",
