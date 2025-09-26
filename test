@@ -1,5 +1,3 @@
-# uwuify.ps1
-# PowerShell version of uwuify.py
 
 # Arrays of faces, expressions, and actions
 $faces = @(
