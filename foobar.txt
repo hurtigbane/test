@@ -379,3 +379,4 @@
 "2025-11-05T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (2)" 
 "2025-11-05T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (3)" 
 "2025-11-06T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (0)" 
+"2025-11-06T00:00:00 GMT+0100 (Centraleuropæisk normaltid) -> (1)" 
